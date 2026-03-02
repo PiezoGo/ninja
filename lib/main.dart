@@ -25,6 +25,14 @@ class mike extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            CircleAvatar(
+              backgroundImage: AssetImage('images/profile.jpeg'),
+              radius: 60.0,
+            ),
+            Divider(
+              height: 90.0,
+              color: Colors.grey[800],
+            ),
             Text(
               'NAME: ',
             style: TextStyle(
@@ -55,7 +63,20 @@ class mike extends StatelessWidget {
               fontSize: 28.0,
         
             ),
-            )
+            ),
+            SizedBox(height: 20.0,),
+            Row(children: <Widget>[
+              Icon( Icons.email,
+              color: Colors.grey[400],
+              ),
+              SizedBox(width: 10.0,),
+              Text('piezo5go@gmail.com',
+                style: TextStyle(
+                  color: Colors.grey[400],
+                  fontSize: 18.0,
+              ),
+              ),
+            ],)
           ],
         ),
       ),
