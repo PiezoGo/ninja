@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
-  home: mike(),
+  home: Mike(),
 ));
 
-class mike extends StatelessWidget {
-  const mike({super.key});
+class Mike extends StatefulWidget {
+  const Mike({super.key});
+
+  @override
+  State<Mike> createState() => _MikeState();
+}
+
+class _MikeState extends State<Mike> {
+  int count = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +27,13 @@ class mike extends StatelessWidget {
         ),
         centerTitle: true,
         backgroundColor: Colors.grey[850],
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        setState(() {
+          count +=1;
+        });
+      },
+      child: Icon(Icons.add)
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30, 40, 30, 0),
@@ -57,7 +72,7 @@ class mike extends StatelessWidget {
             ),
             ),
             Text(
-              '8',
+              '$count',
             style: TextStyle(
               color: Colors.amberAccent,
               fontSize: 28.0,
@@ -76,7 +91,8 @@ class mike extends StatelessWidget {
                   fontSize: 18.0,
               ),
               ),
-            ],)
+            ],),
+            
           ],
         ),
       ),
