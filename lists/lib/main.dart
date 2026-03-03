@@ -29,28 +29,9 @@ class _MikeState extends State<Mike> {
         centerTitle: true,
       ),
       body: Column(
-        children: [
-          Text(
-            quotes[num],
-          ),
-          TextButton(onPressed: (){
-            setState(() {
-              num =  0;
-            });
-          }, child: Text('restart'))
-        ],
-      ),
-
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        setState(() {
-          num +=1;
-        });
-      },
-      backgroundColor: Colors.blueGrey,
-      child: Icon(Icons.next_plan,
-      color: Colors.white,
-      ),
-      ),
+        children: quotes.map((quote) => Text(quote)).toList(),
+        
+      )
     );
   }
 }
