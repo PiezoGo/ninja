@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'quote.dart';
 
 void main() => runApp(MaterialApp(
   home: Mike(),
@@ -12,10 +13,10 @@ class Mike extends StatefulWidget {
 }
 
 class _MikeState extends State<Mike> {
-  List<String> quotes = [
-    'Your are the best you can make youself to be',
-    'Your success is determined by the choices that you make right now',
-    'Like really you decided to take a peep into my repo!! What inspired you??',
+  List<Quote> quotes = [
+    Quote(author: 'Michael Ochieng', text: 'Life is an abyss'),
+    Quote(author: 'Piento Industries', text: 'I saw you yesterday is a drawback. FOCUS BOY!'),
+    Quote(author: 'Piezo', text: 'Your future is determined by the choices that you make right now!'),
   ];
   int num = 0;
 
@@ -29,8 +30,8 @@ class _MikeState extends State<Mike> {
         centerTitle: true,
       ),
       body: Column(
-        children: quotes.map((quote) => Text(quote)).toList(),
-        
+        crossAxisAlignment: CrossAxisAlignment.start,     
+        children: quotes.map((quote) => Text('${quote.author} - ${quote.text}')).toList(),   
       )
     );
   }
