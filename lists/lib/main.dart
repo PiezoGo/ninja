@@ -18,7 +18,37 @@ class _MikeState extends State<Mike> {
     Quote(author: 'Piento Industries', text: 'I saw you yesterday is a drawback. FOCUS BOY!'),
     Quote(author: 'Piezo', text: 'Your future is determined by the choices that you make right now!'),
   ];
-  int num = 0;
+
+  Widget quoteTemplate(quote){
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.black,
+                
+              ),
+            ),
+            SizedBox(height: 9.0),
+            Text(
+              quote.author,
+              style: TextStyle(
+                fontSize: 10.0,
+                color: const Color.fromARGB(255, 99, 98, 98),
+                
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +61,7 @@ class _MikeState extends State<Mike> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,     
-        children: quotes.map((quote) => Text('${quote.author} - ${quote.text}')).toList(),   
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),   
       )
     );
   }
