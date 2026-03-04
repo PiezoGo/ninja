@@ -12,14 +12,17 @@ class Loading extends StatefulWidget {
 class _LoadingState extends State<Loading> {
 
 void getData() async {
-    Response resp = await get('https://jsonplaceholder.typicode.com/posts/1');
-    print('${resp.body} captured0000');
+  var url = Uri.https('https://time.now/developer/api/timezone/Europe/London');
+  
+  Response resp = await get(url);
+  print(resp.body);
+
 
   }
 
   @override
   void initState() {
-    // TODO: implement initState
+    //  implement initState
     super.initState();
     getData();
   }
