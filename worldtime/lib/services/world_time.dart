@@ -10,28 +10,26 @@ class WorldTime{
     WorldTime({required this.location,required this.url1, required this.flag});
 
 
-    void getData() async {
+    Future<void> getData() async {
       var url = Uri.https('time.now', 'developer/api/timezone/$url1');
   
       Response resp = await get(url);
   // print(resp.body);
 
       Map data = jsonDecode(resp.body);
-      print(data);
+      // print(data);
 
       String datetime = data['datetime'];
-      String offset = data['utf_offset'].subString(1,3);
-      print(offset);
+      // String offset = data['utc_offset'];
+      // print(offset);
       DateTime now = DateTime.parse(datetime);
-      print(now);
 
-      now = now.add(Duration(hours: int.parse(offset)));
+      // now = now.add(Duration(hours: int.parse(offset)));
 
       date = now.toString();
-      print(data);
+      // print(data);
       
 
   }
 }
 
-WorldTime instance =  WorldTime()

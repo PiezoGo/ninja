@@ -9,9 +9,17 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  
-  getinfo(){
+  String load = 'Loading....';
+  Future<void> getInformation() async{
+    WorldTime instance =  WorldTime(location: "London", url1: 'Europe/London', flag: 'germanflage.jpeg');
+    await instance.getData();
+    Future.delayed(Duration(seconds: 1), () {
+      setState(() {
+      load = instance.date;
+    });
+    });
     
+
   }
 
 
@@ -19,13 +27,13 @@ class _LoadingState extends State<Loading> {
   void initState() {
     //  implement initState
     super.initState();
-    getData();
+    getInformation();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('loading screen'),
+      body: Text('Date-time: $load'),
     );
   }
 }
