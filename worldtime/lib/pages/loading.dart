@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 
 class Loading extends StatefulWidget {
@@ -9,6 +10,20 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+
+void getData() async {
+    Response resp = await get('https://jsonplaceholder.typicode.com/posts/1');
+    print('${resp.body} captured0000');
+
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
