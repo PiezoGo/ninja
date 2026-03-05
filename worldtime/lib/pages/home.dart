@@ -10,14 +10,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  Map? data;
+  Map data = {};
 
   @override
   Widget build(BuildContext context) {
 
-    data = ModalRoute.of(context)!.settings.arguments as Map;
+    data = data.isNotEmpty ?  data : ModalRoute.of(context)!.settings.arguments as Map;
 
-    String bgImage = data!['isDay'] ? 'day.jpeg' : 'night.jpeg';
+    String bgImage = data['isDay'] ? 'day.jpeg' : 'night.jpeg';
 
     return Scaffold(
       body: Container(
@@ -34,8 +34,16 @@ class _HomeState extends State<Home> {
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 TextButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/location');
+                  onPressed: () async{
+                    dynamic result = await Navigator.pushNamed(context, '/location');
+                    setState(() {
+                      data = {
+                        'location': result['location'],
+                        'flag': result['flag'],
+                        'time': result['time'],
+                        'isDay': result['isDay'],
+                      };
+                    });
                   }
                   ,
                   label: Text(
@@ -47,7 +55,7 @@ class _HomeState extends State<Home> {
                   icon: Icon(Icons.location_city_rounded),
                   ),
                 Text(
-                  data?['location'],
+                  data['location'],
                   style: TextStyle(
                     fontSize: 55,
                     color: Colors.white70,
@@ -55,7 +63,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 Text(
-                  data?['time'],
+                  data['time'],
                   style: TextStyle(
                     color: Colors.white,
                     letterSpacing: 1,

@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 
 class WorldTime{
     String location;
-    late String date;
+    late String time;
     String url1;
     String flag;
     late bool isDay;
@@ -15,27 +15,30 @@ class WorldTime{
     Future<void> getData() async {
       var url = Uri.https('time.now', 'developer/api/timezone/$url1');
   
-      Response resp = await get(url);
-  // print(resp.body);
+      try {
+    Response resp = await get(url);
 
+    if (resp.statusCode == 200) {
       Map data = jsonDecode(resp.body);
-      // print(data);
 
       String datetime = data['datetime'];
-      // String offset = data['utc_offset'];
-      // print(offset);
       DateTime now = DateTime.parse(datetime);
 
-      // now = now.add(Duration(hours: int.parse(offset)));
-      
-      isDay = now.hour > 6 && now.hour < 18 ? true : false ;
-
-      date = DateFormat.jm().format(now);
-      // print(data);
+      isDay = now.hour >= 6 && now.hour < 19;   // adjust as you like
+      time = DateFormat.jm().format(now);       // or .format(now) for 24h
+    } else {
+      time = "Time unavailable";
+      isDay = true;
+    }
+  } catch (e) {
+    time = "Error: $e";
+    isDay = true;
+  }
+}
 
 
       
 
   }
-}
+
 
