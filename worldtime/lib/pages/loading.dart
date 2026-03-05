@@ -10,6 +10,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  
   Future<void> getInformation() async{
     WorldTime instance =  WorldTime(location: "London", url1: 'Europe/London', flag: 'germanflage.jpeg');
     await instance.getData();
