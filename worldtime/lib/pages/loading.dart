@@ -13,11 +13,13 @@ class _LoadingState extends State<Loading> {
   Future<void> getInformation() async{
     WorldTime instance =  WorldTime(location: "London", url1: 'Europe/London', flag: 'germanflage.jpeg');
     await instance.getData();
-    Future.delayed(Duration(seconds: 1), () {
-      setState(() {
-      load = instance.date;
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': instance.location,
+      'flag': instance.flag,
+      'time': instance.date,
     });
-    });
+
+
     
 
   }
@@ -33,7 +35,7 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('Date-time: $load'),
+      body: Text('$load'),
     );
   }
 }
