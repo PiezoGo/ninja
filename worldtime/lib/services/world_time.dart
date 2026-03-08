@@ -4,17 +4,16 @@ import 'package:intl/intl.dart';
 
 class WorldTime{
     String location;
-    late String time;
+    late String time = '';
     String url1;
     String flag;
-    late bool isDay;
+    late bool isDay = true;
 
     WorldTime({required this.location,required this.url1, required this.flag});
 
 
     Future<void> getData() async {
-      var url = Uri.https('time.now', 'developer/api/timezone/$url1');
-  
+    var url = Uri.https('gateway.timeapi.world', '/timezone/$url1');  
       try {
     Response resp = await get(url);
 
@@ -26,12 +25,10 @@ class WorldTime{
 
       isDay = now.hour >= 6 && now.hour < 19;   // adjust as you like
       time = DateFormat.jm().format(now);       // or .format(now) for 24h
-    } else {
-      time = "Time unavailable";
-      isDay = true;
-    }
+    } 
   } catch (e) {
     time = "Error: $e";
+    print(' error $time');
     isDay = true;
   }
 }
