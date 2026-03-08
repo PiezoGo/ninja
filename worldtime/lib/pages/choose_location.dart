@@ -31,6 +31,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
                   'time': instance.time,
                   'isDay': instance.isDay,
                 });
+    print(instance.time);
   }
 
   @override
